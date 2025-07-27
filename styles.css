@@ -1,0 +1,961 @@
+:root {
+    --deep-purple: #2D0A31;
+    --pink: #FF2D95;
+    --light-pink: #FF7EC8;
+    --magenta: #D100D1;
+    --white: #FFFFFF;
+    --black: #000000;
+    --button-height: 52px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    touch-action: manipulation;
+}
+
+body {
+    background-color: var(--deep-purple);
+    color: var(--white);
+    overflow-x: hidden;
+    font-size: 16px;
+}
+
+/* Aumento de fonte para desktop */
+@media (min-width: 992px) {
+    body {
+        font-size: 18px;
+    }
+    
+    .link-card {
+        font-size: 1.3rem !important;
+    }
+    
+    .pack-card h3 {
+        font-size: 1.5rem !important;
+    }
+    
+    .pack-card p, .pack-card li {
+        font-size: 1.05rem !important;
+    }
+    
+    .pack-button {
+        font-size: 1.1rem !important;
+    }
+    
+    .tagline-container {
+        font-size: 1.8rem !important;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7) !important;
+    }
+}
+
+/* Header Section - Centralizado com sombreamento */
+.header-section {
+    position: relative;
+    height: 50vh;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    animation: backgroundEntrance 2s forwards;
+    z-index: -1;
+}
+
+/* Gradiente para transição suave */
+.background-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to top, var(--deep-purple) 15%, transparent);
+    z-index: 1;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 2;
+    padding: 20px;
+}
+
+@keyframes backgroundEntrance {
+    0% {
+        opacity: 0;
+        filter: blur(8px);
+        transform: scale(1.15);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
+    }
+}
+
+.profile-container {
+    margin-bottom: 20px;
+    perspective: 1000px;
+    position: relative;
+    z-index: 3;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid var(--white);
+    box-shadow: 0 0 25px var(--pink);
+    animation: profileEntrance 1.5s ease-out;
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+}
+
+@keyframes profileEntrance {
+    0% {
+        opacity: 0;
+        transform: rotate(0deg) scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+/* Animação 3D para desktop ao passar o mouse */
+@media (min-width: 992px) and (hover: hover) {
+    .profile-pic:hover {
+        transform: rotateY(20deg) rotateX(10deg) scale(1.1);
+        box-shadow: 0 0 40px var(--light-pink), 0 0 60px var(--pink);
+        filter: brightness(1.1);
+    }
+}
+
+.name-container {
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 3;
+}
+
+#dynamic-name {
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 0 0 15px var(--pink);
+    letter-spacing: 3px;
+    overflow: hidden;
+    border-right: 0.15em solid var(--pink);
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--pink); }
+}
+
+.tagline-container {
+    opacity: 0;
+    animation: taglineEntrance 1.5s forwards 2s;
+    max-width: 80%;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 3;
+}
+
+@keyframes taglineEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Links Section - Responsividade e Animações */
+.links-section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.links-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Animação de surgimento para os cards de link */
+.link-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(45, 10, 49, 0.7);
+    border: 2px solid var(--pink);
+    border-radius: 15px;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 130px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: linkEntrance 0.8s forwards;
+}
+
+@keyframes linkEntrance {
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Atrasos para animação sequencial */
+.link-card:nth-child(1) { animation-delay: 0.1s; }
+.link-card:nth-child(2) { animation-delay: 0.2s; }
+.link-card:nth-child(3) { animation-delay: 0.3s; }
+.link-card:nth-child(4) { animation-delay: 0.4s; }
+.link-card:nth-child(5) { animation-delay: 0.5s; }
+
+/* Desktop: 5 colunas em linha */
+@media (min-width: 1200px) {
+    .links-container {
+        grid-template-columns: repeat(5, 1fr);
+        justify-items: center;
+    }
+}
+
+/* Layout para desktop - Logo ao lado do texto */
+@media (min-width: 992px) {
+    .link-card {
+        flex-direction: row;
+        justify-content: flex-start;
+        text-align: left;
+        gap: 15px;
+        padding: 15px 20px;
+        width: 90%;
+        max-width: 250px;
+        margin: 0 auto;
+    }
+    
+    .link-card i {
+        margin-bottom: 0 !important;
+        font-size: 2rem !important;
+    }
+    
+    .telegram-free .link-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .telegram-free .link-text span {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+}
+
+.link-card i {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: var(--light-pink);
+    transition: transform 0.3s ease;
+}
+
+/* Animações melhoradas para desktop */
+@media (hover: hover) and (pointer: fine) {
+    .link-card:hover {
+        transform: translateY(-7px) rotate(1deg);
+        box-shadow: 0 10px 25px rgba(255, 45, 149, 0.6);
+        border-color: var(--light-pink);
+    }
+    
+    .link-card:hover i {
+        transform: scale(1.2) rotate(5deg);
+        color: var(--white);
+    }
+    
+    .link-card:active {
+        transform: translateY(2px) scale(0.98);
+    }
+}
+
+.link-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 45, 149, 0.4), transparent);
+    transition: 0.5s;
+}
+
+.link-card:hover::before {
+    left: 100%;
+}
+
+/* Animações para mobile/touch */
+.link-card:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+
+/* Packs Section - Sistema de Grid Aprimorado */
+.packs-section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.section-title {
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: var(--light-pink);
+    text-shadow: 0 0 15px rgba(255, 45, 149, 0.6);
+    animation: titleEntrance 1s ease-out;
+}
+
+@keyframes titleEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.packs-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pack-card {
+    background: rgba(45, 10, 49, 0.7);
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid var(--pink);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s forwards;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes fadeInUp {
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Atrasos para animação sequencial dos packs */
+.pack-card:nth-child(1) { animation-delay: 0.2s; }
+.pack-card:nth-child(2) { animation-delay: 0.3s; }
+.pack-card:nth-child(3) { animation-delay: 0.4s; }
+.pack-card:nth-child(4) { animation-delay: 0.5s; }
+.pack-card:nth-child(5) { animation-delay: 0.6s; }
+.pack-card:nth-child(6) { animation-delay: 0.7s; }
+.pack-card:nth-child(7) { animation-delay: 0.8s; }
+.pack-card:nth-child(8) { animation-delay: 0.9s; }
+
+/* Tablet: 2 colunas */
+@media (min-width: 768px) {
+    .packs-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop médio: 3 colunas */
+@media (min-width: 992px) {
+    .packs-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Desktop grande: 4 colunas */
+@media (min-width: 1200px) {
+    .packs-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.pack-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Container do botão com centralização */
+.pack-button-container {
+    margin-top: auto;
+    padding: 0 15px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.pack-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid var(--pink);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.pack-card:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+.pack-card h3 {
+    margin: 15px 0 10px;
+    color: var(--light-pink);
+    font-size: 1.3rem;
+}
+
+.pack-card p {
+    margin-bottom: 15px;
+    color: #e0e0e0;
+    line-height: 1.5;
+}
+
+.pack-card ul {
+    list-style: none;
+    margin-bottom: 20px;
+    text-align: left;
+    flex-grow: 1;
+    padding: 0 15px;
+}
+
+.pack-card ul li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.pack-card ul li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--light-pink);
+    font-weight: bold;
+}
+
+.pack-button {
+    background: linear-gradient(45deg, var(--pink), var(--magenta));
+    border: none;
+    padding: 14px 25px;
+    border-radius: 25px;
+    color: var(--white);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(255, 45, 149, 0.6);
+    font-size: 1rem;
+    width: 100%;
+    max-width: 250px;
+    height: var(--button-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animações de botão para desktop */
+@media (hover: hover) {
+    .pack-button:hover {
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: 0 8px 25px rgba(255, 45, 149, 0.8);
+        background: linear-gradient(45deg, var(--magenta), var(--pink));
+    }
+    
+    .pack-button::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -60%;
+        width: 20px;
+        height: 200%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: rotate(30deg);
+        transition: all 0.6s;
+    }
+    
+    .pack-button:hover::after {
+        left: 120%;
+    }
+}
+
+/* Animação de clique para todos dispositivos */
+.pack-button:active {
+    transform: scale(0.95) !important;
+    box-shadow: 0 0 10px rgba(255, 45, 149, 0.5) !important;
+    background: linear-gradient(45deg, var(--magenta), var(--pink));
+}
+
+/* Animações pesadas apenas para desktop */
+@media (min-width: 992px) and (hover: hover) {
+    .pack-card {
+        perspective: 1000px;
+    }
+    
+    .pack-card:hover {
+        transform: translateY(-10px) rotateX(5deg) rotateY(2deg);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+    
+    .link-card {
+        transform-style: preserve-3d;
+        transform: translateZ(0);
+    }
+    
+    .link-card:hover {
+        transform: translateY(-7px) rotate(1deg) translateZ(10px);
+        box-shadow: 0 15px 35px rgba(255, 45, 149, 0.7);
+    }
+    
+    /* Efeito de cursor personalizado */
+    .link-card:hover, .pack-card:hover, .profile-pic:hover {
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='none' stroke='%23FF2D95' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2' fill='%23FF2D95'/%3E%3C/svg%3E"), auto;
+    }
+}
+
+/* Ajustes de responsividade */
+@media (max-width: 768px) {
+    .header-section {
+        height: 40vh;
+        min-height: 300px;
+    }
+    
+    .profile-pic {
+        width: 120px;
+        height: 120px;
+    }
+    
+    #dynamic-name {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-section {
+        height: 35vh;
+        min-height: 250px;
+    }
+    
+    .profile-pic {
+        width: 100px;
+        height: 100px;
+    }
+    
+    #dynamic-name {
+        font-size: 1.5rem;
+    }
+    
+    .packs-container {
+        gap: 15px;
+    }
+    
+    .pack-card {
+        border-width: 1.5px;
+    }
+    
+    .pack-button {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Animação de clique para a foto de perfil */
+.profile-pic:active {
+    animation: clickEffect 0.3s ease;
+}
+
+@keyframes clickEffect {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+/* Correção do botão Privacy */
+.privacy-icon::before {
+    content: "\f06e"; /* Ícone de olho (representando Privacy +18) */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+
+/* Layout para Telegram Free */
+.telegram-free {
+    flex-direction: column;
+}
+
+.telegram-free .link-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.telegram-free .link-text span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+@media (min-width: 992px) {
+    .telegram-free {
+        flex-direction: row;
+    }
+    
+    .telegram-free .link-text {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .telegram-free .link-text span {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+/* Correção adicional para centralização do botão "Quero esse!" */
+.pack-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    padding: 0 15px 20px;
+}
+
+.pack-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Efeito Ripple */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms linear;
+  background-color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Animação Pulse */
+.pulse {
+  animation: pulse 0.4s ease-out;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+.pack-button {
+    height: 45px;
+    margin-left: 20px; /* afasta da esquerda em relação ao centro? */
+    margin-bottom: 5px; /* afasta da borda inferior? */
+}/* Ajustes para o botão "Eu quero" */
+.pack-button {
+    height: 45px; /* Reduzindo a altura */
+}
+
+.pack-button-container {
+    padding: 0 15px 25px 20px; /* Aumenta o padding inferior e o padding esquerdo */
+}
+
+
+
+.links-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.link-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(45, 10, 49, 0.7);
+    border: 2px solid var(--pink);
+    border-radius: 15px;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 130px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: linkEntrance 0.8s forwards;
+}
+
+/* Ajuste para desktop: alinhamento em linha e preenchimento do espaço */
+@media (min-width: 992px) {
+    .link-card {
+        flex-direction: row;
+        justify-content: flex-start;
+        text-align: left;
+        gap: 15px;
+        padding: 15px 20px;
+        min-height: auto;
+        white-space: nowrap; /* Impede a quebra de linha em desktop */
+    }
+}
+
+@media (max-width: 767px) {
+    .links-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+/* Bloquear seleção de texto */
+    * {
+        user-select: none !important;
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+    }
+
+    /* Bloquear chamada de menu de toque no mobile */
+    body, img {
+        -webkit-touch-callout: none !important;
+        -webkit-user-drag: none !important;
+        pointer-events: auto;
+
+/* Proteção de seleção universal */
+::selection {
+    background: transparent;
+}
+
+/* Imagens não selecionáveis */
+img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
+
+/* Efeito de desfoque em tentativa de screenshot */
+body:active {
+    filter: blur(5px);
+    transition: filter 0.2s;
+}
+
+
+
+
+
+
+
+/* ================= CONTAINER DE IMAGEM ================= */
+.pack-card .image-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(255, 45, 149, 0.15) 0%, rgba(45, 10, 49, 0.4) 100%);
+  border-bottom: 2px solid var(--pink);
+  border-radius: 15px 15px 0 0;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  padding: 5px;
+}
+
+/* ================= IMAGEM ================= */
+.pack-card img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  filter: saturate(1.05) contrast(1.05);
+  display: block;
+}
+
+/* ================= AJUSTES DE CARD ================= */
+.pack-card {
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  transform: translateZ(0);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 1;
+}
+
+/* Espaçamento entre cards */
+.packs-container {
+  gap: 30px !important;
+}
+
+/* ================= ANIMAÇÕES PARA DESKTOP ================= */
+@media (min-width: 992px) and (hover: hover) {
+  .pack-card:hover {
+    transform: translateY(-8px) rotateX(3deg) rotateY(1deg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 2px var(--light-pink);
+    z-index: 10;
+  }
+  
+  .pack-card:hover .image-container {
+    background: linear-gradient(135deg, rgba(255, 45, 149, 0.25) 0%, rgba(45, 10, 49, 0.5) 100%);
+    border-color: var(--light-pink);
+  }
+  
+  .pack-card:hover img {
+    transform: scale(1.1) rotate(0.5deg);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    filter: saturate(1.2) contrast(1.1);
+  }
+  
+  .pack-card:hover .image-container::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 60%);
+    transform: rotate(30deg);
+    animation: shine 1.5s infinite;
+    z-index: 1;
+  }
+  
+  @keyframes shine {
+    0% { transform: rotate(30deg) translateX(-100%); }
+    100% { transform: rotate(30deg) translateX(100%); }
+  }
+}
+
+  /* Efeito de brilho rosa ao redor do card */
+  .pack-card:active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    box-shadow: 0 0 0 0 rgba(255, 45, 149, 0.6);
+    animation: glow 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    z-index: -1;
+  }
+  
+  @keyframes glow {
+    0% {
+      box-shadow: 0 0 0 0 rgba(255, 45, 149, 0.6);
+    }
+    100% {
+      box-shadow: 0 0 0 15px rgba(255, 45, 149, 0);
+    }
+  }
+}
+
+/* ================= AJUSTES RESPONSIVOS ================= */
+@media (max-width: 767px) {
+  .pack-card .image-container {
+    min-height: 160px;
+    padding: 3px;
+  }
+  
+  .pack-card {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .packs-container {
+    gap: 25px !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .pack-card .image-container {
+    min-height: 190px;
+    padding: 4px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .pack-card .image-container {
+    min-height: 220px;
+    padding: 5px;
+  }
+}
+
+/* Ajuste para imagens com proporções diferentes */
+.pack-card .image-container.landscape img {
+  max-width: 95%;
+  max-height: 95%;
+}
+
+.pack-card .image-container.portrait img {
+  max-height: 95%;
+}
