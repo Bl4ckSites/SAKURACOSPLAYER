@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    console.info('%c🔥 Código iniciado com sucesso! Criador: Roger Bastos', 'color: #ff3366; font-weight: bold;');
+    console.info('%c🔥 Código iniciado com sucesso! Criador: bl4ckSites', 'color: #ff3366; font-weight: bold;');
 
     // =====================================================================
     // SISTEMA DE SONS COM REDUNDÂNCIA AVANÇADA
@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function () {
         protectImages();
         setupInteractiveElements();
         
-        console.info('%c✅ Tudo operacional! Botões funcionando perfeitamente!', 'color: green; font-weight: bold;');
+        console.info('%c✅ Tudo operacional! Botões funcionando perfeitamente!-byBL4CKSITES', 'color: green; font-weight: bold;');
         vibrate('success');
     } catch (globalErr) {
         console.error('💥 Erro inesperado:', globalErr);
