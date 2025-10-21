@@ -1009,3 +1009,54 @@ body:active {
 .pack-card .image-container.portrait img {
     max-height: 95%;
 }
+/* Garantir que os preços sejam exibidos corretamente */
+.pack-card ul li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 10px;
+    line-height: 1.4;
+    font-size: 1rem;
+}
+
+.pack-card ul {
+    padding: 0 15px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Manter a formatação original dos botões */
+.pack-button-container {
+    margin-top: auto;
+    padding: 0 15px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.pack-button {
+    background: linear-gradient(45deg, var(--pink), var(--magenta));
+    border: none;
+    padding: 14px 25px;
+    border-radius: 25px;
+    color: var(--white);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(255, 45, 149, 0.6);
+    font-size: 1rem;
+    width: 100%;
+    max-width: 250px;
+    height: var(--button-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+/* Responsividade para textos */
+@media (max-width: 768px) {
+    .pack-card ul li {
+        font-size: 0.9rem;
+    }
+}
