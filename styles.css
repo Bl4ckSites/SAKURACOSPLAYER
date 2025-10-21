@@ -959,3 +959,53 @@ body:active {
 .pack-card .image-container.portrait img {
   max-height: 95%;
 }
+/* Estilos para os preços com link do Telegram */
+.pack-card ul li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 10px;
+    word-break: break-all;
+    line-height: 1.4;
+}
+
+.pack-card ul {
+    padding: 0 10px;
+    margin-bottom: 15px;
+}
+
+/* Melhorar a responsividade dos textos longos */
+@media (max-width: 768px) {
+    .pack-card ul li {
+        font-size: 0.9rem;
+        padding-left: 8px;
+    }
+    
+    .pack-card h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Ajustes para container de imagem já existentes - apenas garantir que estão presentes */
+.pack-card .image-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(255, 45, 149, 0.15) 0%, rgba(45, 10, 49, 0.4) 100%);
+    border-bottom: 2px solid var(--pink);
+    border-radius: 15px 15px 0 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    padding: 5px;
+}
+
+.pack-card .image-container.landscape img {
+    max-width: 95%;
+    max-height: 95%;
+}
+
+.pack-card .image-container.portrait img {
+    max-height: 95%;
+}
